@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
 
 function App() {
+  const url2020 = 'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/averages?date_from=2020-09-10T00%3A00%3A00%2B00%3A00&date_to=2020-09-17T23%3A07%3A00%2B00%3A00&parameter=co&unit=string&country_id=US&limit=50&page=1&offset=0&sort=asc&spatial=location&temporal=day&location=1938&group=false';
+  const url2021 = 'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/averages?date_from=2021-09-10T00%3A00%3A00%2B00%3A00&date_to=2021-09-17T23%3A07%3A00%2B00%3A00&parameter=co&unit=string&country_id=US&limit=50&page=1&offset=0&sort=asc&spatial=location&temporal=day&location=1938&group=false';
+
+  useEffect(() => {
+    fetch(url2020)
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data);
+    })
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
     </div>
   );
 }
