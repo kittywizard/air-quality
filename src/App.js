@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import ReactTooltip from 'react-tooltip';
 import Header from './components/Header';
 import Map from "./components/Map"
 
@@ -14,17 +15,21 @@ function App() {
   //       console.log(data);
   //     })
   // }, []);
+   const [tooltip, setTooltip] = useState("");
 
-  const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 
+  const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
+  //pass in unique tooltip id to the map??
 
   return (
     <div className="App">
       <Header />
       <Map 
         url={geoUrl}
+        setTooltip={setTooltip}
       />
+      <ReactTooltip>{tooltip}</ReactTooltip>
     </div>
   );
 }

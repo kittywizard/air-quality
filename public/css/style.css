@@ -2,4 +2,11 @@ body {
   font-family: sans-serif;
 }
 
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1em;
+}
+
 /*# sourceMappingURL=style.css.map */
