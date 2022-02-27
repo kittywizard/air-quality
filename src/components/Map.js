@@ -8,35 +8,53 @@ import {
   } from "react-simple-maps";
 
 const Map = (props) => {
-    const markers = [
-        {
-            markerOffset: -30,
-            name: "Seattle",
-            coordinates: [-122.335167, 47.608013]
-        },
-
-        {
-            markerOffset: -30,
-            name: "New York",
-            coordinates: [-74.006, 40.7128]
-        }
-    ];
-    
-    const markerDisplay = markers.map(
-        marker => {
+    const locationMarkers = props.locationData.map(location => {
             return (
-                <Marker 
-                    key={marker.name}
-                    coordinates={marker.coordinates} 
+                <Marker
+                key={location.id}
+                coordinates={[location.coordinates.longitude, location.coordinates.latitude]}
                 >
-                    <circle 
-                        r={5} 
+                    <circle
+                        r={2}
                         fill="#444"
+                        onMouseOver={() => {
+                            //convert date
+                            const lastUpdatedDate = new Date(location.lastUpdated);
+                            const readableDate = 
+                            `${lastUpdatedDate.getMonth() + 1}/${lastUpdatedDate.getDay()}/${lastUpdatedDate.getFullYear()}`
+
+                            props.setTooltip(`
+                                <div>
+                                    <p>City: ${location.name}</p>
+                                    <p>Type: <span class="title-case">${location.entity}</span></p>
+                                    <p>Last Updated: ${readableDate}</p>
+                                </div>
+                            `)
+                        }}
+                        onMouseOut={() => {
+                            props.setTooltip("");
+                        }}
+                        onClick={(event) => props.toggle(event, location.id)}
                     />
                 </Marker>
-
             )
-        });
+    });
+    
+    // const markerDisplay = markers.map(
+    //     marker => {
+    //         return (
+    //             <Marker 
+    //                 key={marker.name}
+    //                 coordinates={marker.coordinates} 
+    //             >
+    //                 <circle 
+    //                     r={5} 
+    //                     fill="#444"
+    //                 />
+    //             </Marker>
+
+    //         )
+    //     });
 
     return (
         <ComposableMap 
@@ -89,7 +107,7 @@ const Map = (props) => {
                     ))}
                 </Geographies>
                 
-                {markerDisplay}
+                {locationMarkers}
 
         
             </ZoomableGroup>

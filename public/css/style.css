@@ -9,4 +9,8 @@ header {
   padding: 1em;
 }
 
+.title-case {
+  text-transform: capitalize;
+}
+
 /*# sourceMappingURL=style.css.map */
