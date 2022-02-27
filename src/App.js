@@ -3,27 +3,31 @@ import ReactTooltip from 'react-tooltip';
 
 import Header from './components/Header';
 import Map from "./components/Map";
-
+import Filters from './components/Filters';
 
 function App() {
-  const url = "https://docs.openaq.org/v2/locations?limit=50&page=1&offset=0&sort=desc&radius=1000&country_id=US&order_by=lastUpdated&dumpRaw=false"
-  //const url = "https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/locations?limit=100&page=1&offset=0&sort=desc&has_geo=true&radius=1000&country_id=US&order_by=country&isAnalysis=true&dumpRaw=falsehttps://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/locations?limit=100&page=1&offset=0&sort=desc&has_geo=true&radius=1000&country_id=US&order_by=lastUpdated&isAnalysis=true&dumpRaw=false";
+  
+  //controls the tooltip display state (onMouseOver)
+  const [tooltip, setTooltip] = useState("");
+  const [locationData, setLocationData] = useState([]);
+  const [dataFilters, setDataFilters] = useState('');
+  //basic JSON data for a map of the US
+  const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
+  let url = `https://docs.openaq.org/v2/locations?limit=50&page=1&offset=0&sort=desc&radius=1000&country_id=US&order_by=lastUpdated&dumpRaw=false`;
+
   useEffect(() => {
+    if(dataFilters !== ''){
+      url = `${url}&entity=${dataFilters}`
+    }
+
     fetch(url)
       .then(resp => resp.json())
       .then(data => {
-        console.log(data)
-       setLocationData(data.results);
+        console.log(data.results)
+          setLocationData(data.results);
       })
-  }, []);
+  }, [dataFilters]);
 
-  //controls the tooltip display state (onMouseOver)
-   const [tooltip, setTooltip] = useState("");
-   const [locationData, setLocationData] = useState([]);
-   //const [detailedData, setDetailedData] = useState('');
-
-  //basic JSON data for a map of the US
-  const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
   function toggle(e,id) {
       //grab ID when user clicks tooltip? 
@@ -40,6 +44,10 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <Filters 
+        dataFilters={dataFilters} 
+        setDataFilters={setDataFilters}
+      />
       <Map 
         url={geoUrl}
         setTooltip={setTooltip}

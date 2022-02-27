@@ -1,7 +1,7 @@
 export default function Header() {
     return (
         <header>
-            stuff goes here.
+            Air Quality Measurements in the US
         </header>
     )
 }

@@ -21,7 +21,7 @@ const Map = (props) => {
                             //convert date
                             const lastUpdatedDate = new Date(location.lastUpdated);
                             const readableDate = 
-                            `${lastUpdatedDate.getMonth() + 1}/${lastUpdatedDate.getDay()}/${lastUpdatedDate.getFullYear()}`
+                            `${lastUpdatedDate.getMonth() + 1}/${lastUpdatedDate.getDay()}/${lastUpdatedDate.getFullYear()}`;
 
                             props.setTooltip(`
                                 <div>
@@ -39,29 +39,14 @@ const Map = (props) => {
                 </Marker>
             )
     });
-    
-    // const markerDisplay = markers.map(
-    //     marker => {
-    //         return (
-    //             <Marker 
-    //                 key={marker.name}
-    //                 coordinates={marker.coordinates} 
-    //             >
-    //                 <circle 
-    //                     r={5} 
-    //                     fill="#444"
-    //                 />
-    //             </Marker>
-
-    //         )
-    //     });
 
     return (
+    <div className="container">
         <ComposableMap 
             projection="geoAlbersUsa"
-            projectionConfig={{
-                scale: 800
-            }}
+            // projectionConfig={{
+            //     scale: 800
+            // }}
             data-tip=""
             style={{
                 outline: "none"
@@ -112,6 +97,7 @@ const Map = (props) => {
         
             </ZoomableGroup>
     </ComposableMap>
+</div>
     )
 }
 
