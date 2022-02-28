@@ -40,9 +40,14 @@ function App() {
 
   //use effect for rendering measurement data
   useEffect(() => {
+    //default URL - works for community locations
+    let fetchURL = `https://docs.openaq.org/v2/measurements?date_from=2020-01-01T00%3A00%3A00%2B00%3A00&date_to=2022-02-27T22%3A56%3A00%2B00%3A00&limit=10&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`;
+
     if(displayMeasurements[0]){
-      console.log(`https://docs.openaq.org/v2/measurements?date_from=2020-01-01T00%3A00%3A00%2B00%3A00&date_to=2022-02-27T22%3A56%3A00%2B00%3A00&limit=10&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`)
-      fetch(`https://docs.openaq.org/v2/measurements?date_from=2020-01-01T00%3A00%3A00%2B00%3A00&date_to=2022-02-27T22%3A56%3A00%2B00%3A00&limit=10&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`)
+      //need to check and see if research is selected - different URL
+      if(dataFilters === "research") fetchURL = `https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?date_from=2022-01-01T00%3A00%3A00%2B00%3A00&date_to=2022-02-28T17%3A56%3A00%2B00%3A00&limit=10&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime&entity=research`;
+
+      fetch(fetchURL)
       .then(resp => resp.json())
       .then(data => {        
         setMeasurementData(data.results);

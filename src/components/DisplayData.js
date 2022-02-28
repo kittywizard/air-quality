@@ -24,7 +24,8 @@ export default function DisplayData(props) {
                 : 
                         <div className="measurement-container">
                             {measurementDisplay}
-                        </div>}
+                        </div>
+            }
 
         </section>
     )
