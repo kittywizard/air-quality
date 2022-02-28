@@ -5,6 +5,7 @@ export default function Card(props) {
     const readableUpdatedDate = `${updatedDate.getMonth() + 1}/${updatedDate.getDate()}/${updatedDate.getFullYear()}`;
     const readableTime = `${updatedDate.getUTCHours()}:${updatedDate.getUTCMinutes()}`;
 
+    const readableNumber = props.value.toFixed(3);
     return (
         <section className="measurement-card">
             <h3 className="measurement-card--header">{props.location}</h3>
@@ -12,7 +13,7 @@ export default function Card(props) {
 
             <div className="measurement-card--units">
                 <span className="measurement-card--units-value">
-                {props.value}
+                {readableNumber}
                 </span> per {props.unit}
             </div>
 
