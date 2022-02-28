@@ -15,19 +15,32 @@ const Map = (props) => {
                 coordinates={[location.coordinates.longitude, location.coordinates.latitude]}
                 >
                     <circle
-                        r={2}
+                        r={3}
                         fill="#444"
                         onMouseOver={() => {
                             //convert date
                             const lastUpdatedDate = new Date(location.lastUpdated);
                             const readableDate = 
-                            `${lastUpdatedDate.getMonth() + 1}/${lastUpdatedDate.getDay()}/${lastUpdatedDate.getFullYear()}`;
+                            `${lastUpdatedDate.getMonth() + 1}/${lastUpdatedDate.getDate()}/${lastUpdatedDate.getFullYear()}`;
 
                             props.setTooltip(`
-                                <div>
-                                    <p>City: ${location.name}</p>
-                                    <p>Type: <span class="title-case">${location.entity}</span></p>
-                                    <p>Last Updated: ${readableDate}</p>
+                                <div class="tooltip">
+                                    <p class="title-case">
+                                        <strong>Location:</strong> ${location.name}
+                                    </p>
+                                    <p>
+                                        <strong>Type:</strong> <span class="title-case">${location.entity}</span>
+                                    </p>
+                                    <p>
+                                        <strong>Last Updated:</strong> ${readableDate}
+                                    </p>
+                                        <br>
+                                    <p>
+                                        <strong>Sensor Type:</strong> <span class="title-case">${location.sensorType}</span>
+                                    </p>
+                                    <p>
+                                        <strong>Source:</strong> ${location.sources[0].name}
+                                    </p>
                                 </div>
                             `)
                         }}
@@ -66,18 +79,20 @@ const Map = (props) => {
                                     strokeWidth="1"
                                     style={{
                                         default: {
-                                            fill: "#EAEAEC",
-                                            stroke: "#D6D6DA",
+                                            fill: "#f0f4ff",
+                                            stroke: "#7593eb",
                                             outline: "none"
                                         },
 
                                         hover: {
-                                            fill: "#0cc0cc",
+                                            fill: "#d8def0",
+                                            stroke: "#7593eb",
                                             outline: "none"
                                         },
 
                                         pressed: {
-                                            fill: "#0cc0cc",
+                                            fill: "#d8def0",
+                                            stroke: "#7593eb",
                                             outline: "none"
                                         }
                                     }}
