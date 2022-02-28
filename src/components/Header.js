@@ -5,7 +5,7 @@ export default function Header() {
                 Air Quality Measurements in the US
             </h1>
             <p className="header-description">
-                Select a button to filter data based on air quality measurement type and click on any dot to see detailed measurements from the past week.
+                Select a button to filter data based on air quality measurement type and click on any dot to see detailed measurements from the past year up until now. (as of February 28, 2022)
             </p>
         </header>
     )
