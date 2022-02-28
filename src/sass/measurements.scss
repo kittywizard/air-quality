@@ -1,14 +1,37 @@
 .measurement-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 
-    max-width: 800px;
 }
 
 .measurement-card {
     padding: 1em;
+    margin: 1em;
     border-radius: 15px;
-    background-color: antiquewhite;
+    background-color: #f0f0f0;
+
+    &--header,
+    &--date,
+    &--units {
+        margin: 0.4em;
+    }
+
+    &--header{ 
+        font-size: 1.2rem;
+        color: $accent-color;
+    }
+
+    &--date {
+        font-weight: 400;
+    }
+
+    &--units {
+        &-value {
+            font-size: 2rem;
+            color: $accent-color;
+            font-weight: 700;
+        }
+    }
 }

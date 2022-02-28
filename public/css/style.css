@@ -1,39 +1,19 @@
+/*
+    CHANGE ACCENT COLOR ALSO IN THE MAP.JS FILE
+        MAP STROKE
+*/
 .title-case {
   text-transform: capitalize;
 }
 
-.measurement-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  max-width: 800px;
+.header-headline {
+  font-size: 2rem;
+  color: #7593eb;
+  margin: 0.2em;
 }
-
-.measurement-card {
-  padding: 1em;
-  border-radius: 15px;
-  background-color: antiquewhite;
-}
-
-body {
-  font-family: "Montserrat", sans-serif;
-}
-
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 1em;
-  font-weight: bold;
-}
-
-.container {
-  width: 100%;
-  max-width: 1000px;
-  height: 100vh;
-  overflow: hidden;
-  margin: 0 auto;
+.header-description {
+  font-size: 1rem;
+  margin-bottom: 2em;
 }
 
 .filters {
@@ -43,9 +23,67 @@ header {
   flex-direction: row;
   justify-content: space-around;
 }
+.filters label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 1em;
+}
+
+.measurement-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.measurement-card {
+  padding: 1em;
+  margin: 1em;
+  border-radius: 15px;
+  background-color: #f0f0f0;
+}
+.measurement-card--header, .measurement-card--date, .measurement-card--units {
+  margin: 0.4em;
+}
+.measurement-card--header {
+  font-size: 1.2rem;
+  color: #7593eb;
+}
+.measurement-card--date {
+  font-weight: 400;
+}
+.measurement-card--units-value {
+  font-size: 2rem;
+  color: #7593eb;
+  font-weight: 700;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3em;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+  margin: 0 auto;
+}
 
 p {
   margin: 0.3em;
+}
+
+.data-display {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=style.css.map */

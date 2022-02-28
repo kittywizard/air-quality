@@ -10,18 +10,10 @@ export default function Filters(props) {
             {/* 
                     BUG:
                         -government entity search breaks
+                            -API call seems identical - not sure why
     
             */}
             
-            {/* <div>
-                <input type="radio" 
-                    name="filter"
-                    value=""
-                    checked={props.dataFilters === ""}
-                    onChange={handleChange}
-                    />
-                <label htmlFor="all">All</label>
-            </div> */}
             {/* <div>
                 <input type="radio" 
                     name="filter"
@@ -31,6 +23,7 @@ export default function Filters(props) {
                     />
                 <label htmlFor="government">Government</label>
             </div> */}
+            
             <div>
                 <input type="radio" 
                     name="filter" 

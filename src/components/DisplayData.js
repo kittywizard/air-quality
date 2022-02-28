@@ -3,6 +3,8 @@ import Card from "./Card";
 
 export default function DisplayData(props) {
 
+    console.log(props)
+
     const measurementDisplay = props.measurementData.map(data => {
         const {location, value, unit, date} = data;
 
