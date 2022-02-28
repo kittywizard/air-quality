@@ -29,9 +29,6 @@
   padding: 1em;
 }
 
-/* ------ 
-HERE BEGINS CUSTOM RADIO BUTTONS
-------- */
 .measurement-container {
   display: flex;
   flex-direction: row;
