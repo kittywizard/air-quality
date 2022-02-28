@@ -40,8 +40,7 @@ function App() {
 
   //use effect for rendering measurement data
   useEffect(() => {
-    //only want to run if true
-    if(displayMeasurements[0] && measurementData.length === 0){
+    if(displayMeasurements[0]){
       fetch(`https://docs.openaq.org/v2/measurements?date_from=2020-01-01T00%3A00%3A00%2B00%3A00&date_to=2022-02-27T22%3A56%3A00%2B00%3A00&limit=10&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`)
       .then(resp => resp.json())
       .then(data => {        
