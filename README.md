@@ -17,3 +17,5 @@ This project is to look at air quality readings from across the United States fr
 - Filter measurement data in a more meaningful, visual way.
 - Allow user to select date range to pull in data.
 - UI updates including: custom radio buttons that work, better filtering options.
+- Add unit tests (ensure API works in all the various situations - would fix current bugs)
+- Refactor and organize code, separating out functions into own files. 
