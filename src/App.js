@@ -4,6 +4,7 @@ import ReactTooltip from 'react-tooltip';
 import Header from './components/Header';
 import Map from "./components/Map";
 import Filters from './components/Filters';
+import DisplayData from './components/DisplayData';
 
 function App() {
   
@@ -11,14 +12,22 @@ function App() {
   const [tooltip, setTooltip] = useState("");
   const [locationData, setLocationData] = useState([]);
   const [dataFilters, setDataFilters] = useState('');
+  const [measurementData, setMeasurementData] = useState([]);
+  const [displayMeasurements, setDisplayMeasurements] = useState([false, 0]);
+
   //basic JSON data for a map of the US
   const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
-  let url = `https://docs.openaq.org/v2/locations?limit=50&page=1&offset=0&sort=desc&radius=1000&country_id=US&order_by=lastUpdated&dumpRaw=false`;
 
+  //default URL
+  let url = `https://docs.openaq.org/v2/locations?limit=50&page=1&offset=0&sort=desc&radius=1000&country_id=US&dumpRaw=false&has_geo=true`;
+
+  //use effect for marker rendering locations 
   useEffect(() => {
+   
     if(dataFilters !== ''){
       url = `${url}&entity=${dataFilters}`
     }
+    console.log(url)
 
     fetch(url)
       .then(resp => resp.json())
@@ -26,21 +35,28 @@ function App() {
         console.log(data.results)
           setLocationData(data.results);
       })
+      
   }, [dataFilters]);
 
-
-  function toggle(e,id) {
-      //grab ID when user clicks tooltip? 
-    console.log(id);
-
-    fetch('')
+  //use effect for rendering measurement data
+  useEffect(() => {
+    //only want to run if true
+    if(displayMeasurements[0] && measurementData.length === 0){
+      fetch(`https://docs.openaq.org/v2/measurements?date_from=2020-01-01T00%3A00%3A00%2B00%3A00&date_to=2022-02-27T22%3A56%3A00%2B00%3A00&limit=10&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`)
       .then(resp => resp.json())
-      .then(data => {
-        //do something
+      .then(data => {        
+        setMeasurementData(data.results);
       })
+    }
+    
+  }, [displayMeasurements]);
 
+  //display measurement data 
+  function toggle(e,id) {
+    setDisplayMeasurements([true, id]);
     e.preventDefault();
   }
+
   return (
     <div className="App">
       <Header />
@@ -61,6 +77,12 @@ function App() {
       >
         {tooltip}
       </ReactTooltip>
+
+      {displayMeasurements[0] &&
+        <DisplayData 
+          measurementData={measurementData}
+        />
+      }
     </div>
   );
 }

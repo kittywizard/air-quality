@@ -1,12 +1,19 @@
-.tooltip-link {
-  text-decoration: none;
-  color: #ccc;
+.title-case {
+  text-transform: capitalize;
 }
 
-.tooltip-link:hover,
-.tooltip-link:focus {
-  color: #e5e5e5;
-  border-bottom: 1px solid #ccc;
+.measurement-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 800px;
+}
+
+.measurement-card {
+  padding: 1em;
+  border-radius: 15px;
+  background-color: antiquewhite;
 }
 
 body {
@@ -21,12 +28,9 @@ header {
   font-weight: bold;
 }
 
-.title-case {
-  text-transform: capitalize;
-}
-
 .container {
   width: 100%;
+  max-width: 1000px;
   height: 100vh;
   overflow: hidden;
   margin: 0 auto;
