@@ -7,7 +7,13 @@ export default function Filters(props) {
     //REFACTOR IDEA : create radio button component
     return (
         <section className="filters">
-            <div>
+            {/* 
+                    BUG:
+                        -government entity search breaks
+    
+            */}
+            
+            {/* <div>
                 <input type="radio" 
                     name="filter"
                     value=""
@@ -15,8 +21,8 @@ export default function Filters(props) {
                     onChange={handleChange}
                     />
                 <label htmlFor="all">All</label>
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
                 <input type="radio" 
                     name="filter"
                     value="government"
@@ -24,7 +30,7 @@ export default function Filters(props) {
                     onChange={handleChange}
                     />
                 <label htmlFor="government">Government</label>
-            </div>
+            </div> */}
             <div>
                 <input type="radio" 
                     name="filter" 

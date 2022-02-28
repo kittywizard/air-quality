@@ -1,0 +1,11 @@
+.tooltip-link {
+    text-decoration: none;
+    color: #ccc;
+
+}
+
+.tooltip-link:hover,
+.tooltip-link:focus {
+    color: #e5e5e5;
+    border-bottom: 1px solid #ccc;
+}
