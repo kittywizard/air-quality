@@ -19,6 +19,7 @@ function App() {
   const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
   //default URL
+  //need to get new API URL
   let url = `https://docs.openaq.org/v2/locations?limit=50&page=1&offset=0&sort=desc&radius=1000&country_id=US&dumpRaw=false&has_geo=true`;
 
   //use effect for marker rendering locations 
@@ -41,6 +42,8 @@ function App() {
   //use effect for rendering measurement data
   useEffect(() => {
     //default URL - works for community locations
+
+    //NEED NEW URL
     let fetchURL = `https://docs.openaq.org/v2/measurements?date_from=2022-01-01T00%3A00%3A00%2B00%3A00&date_to=2022-02-27T22%3A56%3A00%2B00%3A00&limit=10&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`;
 
     if(displayMeasurements[0]){
