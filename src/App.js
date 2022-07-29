@@ -20,7 +20,8 @@ function App() {
 
   //default URL
   //need to get new API URL
-  let url = `https://docs.openaq.org/v2/locations?limit=50&page=1&offset=0&sort=desc&radius=1000&country_id=US&dumpRaw=false&has_geo=true`;
+  //let url = `https://docs.openaq.org/v2/locations?limit=50&page=1&offset=0&sort=desc&radius=1000&country_id=US&dumpRaw=false&has_geo=true`;
+  let url = `https://api.openaq.org/v2/locations?limit=50&page=1&offset=0&sort=desc&has_geo=true&radius=1000&country_id=US&order_by=lastUpdated&dumpRaw=false`;
 
   //use effect for marker rendering locations 
   useEffect(() => {
