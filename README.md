@@ -7,10 +7,12 @@ This project is to look at air quality readings from across the United States fr
 ![Screenshot of app](https://github.com/kittywizard/air-quality/blob/c809c203ac308c11fdf7d8d1e1a33d33851b3bd3/screenshot.PNG)
 
 ## Known Issues/Bugs
-- Government entity filter is not working, API call works but React crashes the program.
+- Research entity filter is not working.
   - May be an API loading issue (i.e. React is rendering too fast?)
   - Turned off for now.
 - Radio buttons are not showing as active, but are working. Started after attempt to create custom radio buttons.
+
+(check to see if this is still relevant to above bug)
 - Research filter will not load specific data.
   - Potentially slow API call? Need loading screen.
   - Check API call itself.
