@@ -38,13 +38,18 @@ function App() {
 
   // rendering measurement data
   useEffect(() => {
+    //fetch current date and then go back a month?
 
-    let fetchURL = `https://api.openaq.org/v2/measurements?date_from=2022-07-01&date_to=2022-07-29&limit=10&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`;
+    let fetchURL = `https://api.openaq.org/v2/measurements?date_from=2022-07-01&date_to=2022-07-30&limit=10&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`;
     
-    if(displayMeasurements[0]){
-      //need to check and see if research is selected - different URL
-      //if(dataFilters === "research") fetchURL = `https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?date_from=2022-01-01T00%3A00%3A00%2B00%3A00&date_to=2022-02-28T17%3A56%3A00%2B00%3A00&limit=10&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime&entity=research`;
+    /*
+      need to fetch via certain measurements i think
+      grab some dummy data and test this instead of wasting API calls (:
 
+    */
+
+
+    if(displayMeasurements[0]){
       fetch(fetchURL)
       .then(resp => resp.json())
       .then(data => {
@@ -56,7 +61,6 @@ function App() {
 
   //display measurement data 
   function toggle(e,id) {
-    console.log(id)
     setDisplayMeasurements([true, id]);
     e.preventDefault();
   }
