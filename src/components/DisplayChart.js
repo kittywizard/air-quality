@@ -1,4 +1,4 @@
-import { LineChart, Line, XAxis, YAxis } from "recharts";
+import { LineChart, Line, XAxis, YAxis, Legend, ResponsiveContainer, Tooltip } from "recharts";
 
 const DisplayChart = (props) => {
 
@@ -24,19 +24,20 @@ const DisplayChart = (props) => {
             </h3>
             <p>{props.parameters[0].description}</p>
         </div>
-    
-        <LineChart
-            width={800} height={400} data={props.data}
-        >
-            <XAxis dataKey="date"/>
-            <YAxis datakey="value"/>
-            <Line 
-                type="monotone"
-                dataKey="value"
-                stroke="#7593eb"
-            />
+            <LineChart
+                width={800} height={400} data={props.data} className="chart-style"
+            >
+                <XAxis dataKey="date"/>
+                <YAxis datakey="value"/>
+                <Line 
+                    type="monotone"
+                    dataKey="value"
+                    stroke="#2d499c"
+                    activeDot={{r: 8}}
+                />
+                <Tooltip />
 
-        </LineChart>
+            </LineChart>
     </>
     )
 }
