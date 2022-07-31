@@ -92,4 +92,8 @@ p {
   margin: 0 auto;
 }
 
+.map-container {
+  border: 1px solid #7593eb;
+}
+
 /*# sourceMappingURL=style.css.map */

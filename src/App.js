@@ -15,7 +15,6 @@ function App() {
   const [measurementData, setMeasurementData] = useState([]); //specific measurement info once a marker is clicked
   const [displayMeasurements, setDisplayMeasurements] = useState([false, 0]); //checking to see if above is called and displayed
 
-
   //basic JSON data for a map of the US
   const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 

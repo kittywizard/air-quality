@@ -54,7 +54,7 @@ const Map = (props) => {
     });
 
     return (
-    <div className="container">
+    <div className="container map-container">
         <ComposableMap 
             projection="geoAlbersUsa"
             // projectionConfig={{
