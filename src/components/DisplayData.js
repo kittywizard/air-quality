@@ -1,36 +1,22 @@
-// import { nanoid } from "nanoid";
-// import Card from "./Card";
+import { useState } from "react";
 import DisplayChart from "./DisplayChart";
+import {results} from "../data/parameters";
 
 export default function DisplayData(props) {
 
-    // const measurementDisplay = props.measurementData.map(data => {
-    //     const {location, value, unit, date} = data;
-
-    //     return <Card 
-    //                 location={location}
-    //                 value={value}
-    //                 unit={unit}
-    //                 date={date}
-    //                 key={nanoid()}
-    //             />
-    // })
-
-    const refinedMeasurementData = props.measurementData.map((data,index) => {
-        // const formattedDate = new Date(data.date.local);
-        // const readableDate = 
-        // `${formattedDate.getMonth() + 1}/${formattedDate.getDate()}/${formattedDate.getFullYear()}`;
+    const refinedMeasurementData = props.measurementData.map(data => {
+        const formattedDate = new Date(data.date.local);
+        const readableDate = 
+        `${formattedDate.getMonth() + 1}/${formattedDate.getDate()}`;
 
         return {
-            date: index,
+            date: readableDate,
             value: data.value,
             unit: data.unit,
             location: data.location
         }
 
     });
-
-    console.log(refinedMeasurementData)
 
     return (
         <section className="data-display">
@@ -42,10 +28,10 @@ export default function DisplayData(props) {
                     </h1>
                 </div> 
                 : 
-                        // <div className="measurement-container">
-                        //     {measurementDisplay}
-                        // </div>
-                        <DisplayChart data={refinedMeasurementData} />
+                        <DisplayChart
+                             data={refinedMeasurementData}
+                             parameters={results} 
+                        />
             }
 
         </section>

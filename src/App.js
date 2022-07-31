@@ -6,14 +6,15 @@ import Map from "./components/Map";
 import Filters from './components/Filters';
 import DisplayData from './components/DisplayData';
 
+
 function App() {
   
-  //controls the tooltip display state (onMouseOver)
-  const [tooltip, setTooltip] = useState("");
-  const [locationData, setLocationData] = useState([]);
-  const [dataFilters, setDataFilters] = useState('');
-  const [measurementData, setMeasurementData] = useState([]);
-  const [displayMeasurements, setDisplayMeasurements] = useState([false, 0]);
+  const [tooltip, setTooltip] = useState("");   //controls the tooltip display state (onMouseOver)
+  const [locationData, setLocationData] = useState([]); //initial marker data
+  const [dataFilters, setDataFilters] = useState(''); //filters
+  const [measurementData, setMeasurementData] = useState([]); //specific measurement info once a marker is clicked
+  const [displayMeasurements, setDisplayMeasurements] = useState([false, 0]); //checking to see if above is called and displayed
+
 
   //basic JSON data for a map of the US
   const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
@@ -40,14 +41,8 @@ function App() {
   useEffect(() => {
     //fetch current date and then go back a month?
 
-    let fetchURL = `https://api.openaq.org/v2/measurements?date_from=2022-07-01&date_to=2022-07-30&limit=10&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`;
+    let fetchURL = `https://api.openaq.org/v2/measurements?date_from=2022-07-01&date_to=2022-07-31&limit=50&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime&parameter=pm10`;
     
-    /*
-      need to fetch via certain measurements i think
-      grab some dummy data and test this instead of wasting API calls (:
-
-    */
-
 
     if(displayMeasurements[0]){
       fetch(fetchURL)
