@@ -9,6 +9,7 @@ import DisplayData from './components/DisplayData';
 
 function App() {
   
+  const [showMap, setShowMap] = useState(true);
   const [tooltip, setTooltip] = useState("");   //controls the tooltip display state (onMouseOver)
   const [locationData, setLocationData] = useState([]); //initial marker data
   const [dataFilters, setDataFilters] = useState(''); //filters
@@ -23,7 +24,6 @@ function App() {
 
   //marker rendering locations 
   useEffect(() => {
-   
     if(dataFilters !== ''){
       url = `${url}&entity=${dataFilters}`
     }
@@ -38,16 +38,16 @@ function App() {
 
   // rendering measurement data
   useEffect(() => {
-    //fetch current date and then go back a month?
 
     let fetchURL = `https://api.openaq.org/v2/measurements?date_from=2022-07-01&date_to=2022-07-31&limit=50&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime&parameter=pm10`;
-    
+    //let fetchURL = `https://api.openaq.org/v2/latest/location_id=${displayMeasurements[1]}?limit=100&page=1&offset=0&sort=desc&radius=1000&order_by=lastUpdated&dumpRaw=false&parameter=pm10`
 
     if(displayMeasurements[0]){
       fetch(fetchURL)
       .then(resp => resp.json())
       .then(data => {
         setMeasurementData(data.results);
+        setShowMap(prevState => !prevState); //force the chart to show when fetching
       })
     }
     
@@ -59,28 +59,38 @@ function App() {
     e.preventDefault();
   }
 
+  function toggleMap() {
+    setShowMap(prevState => !prevState);
+  }
+
   return (
     <div className="App">
-      <Header />
-      <Filters 
-        dataFilters={dataFilters} 
-        setDataFilters={setDataFilters}
+      <Header 
+        toggleMap={toggleMap}
+        showMap={showMap}
       />
-      <Map 
-        url={geoUrl}
-        setTooltip={setTooltip}
-        locationData={locationData}
-        toggle={toggle}
-      />
-      <ReactTooltip
-        place="bottom"
-        type="dark"
-        html={true}
-      >
-        {tooltip}
-      </ReactTooltip>
-
-      {displayMeasurements[0] &&
+      {
+        showMap ?
+        <>
+          <Filters 
+            dataFilters={dataFilters} 
+            setDataFilters={setDataFilters}
+          />
+          <Map 
+            url={geoUrl}
+            setTooltip={setTooltip}
+            locationData={locationData}
+            toggle={toggle}
+          />
+          <ReactTooltip
+            place="bottom"
+            type="dark"
+            html={true}
+          >
+            {tooltip}
+          </ReactTooltip>
+      </>
+      :
         <DisplayData 
           measurementData={measurementData}
         />
