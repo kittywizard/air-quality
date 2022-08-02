@@ -13,7 +13,6 @@
 }
 .header-description {
   font-size: 1rem;
-  margin-bottom: 2em;
   text-align: center;
   max-width: 500px;
 }
@@ -62,6 +61,18 @@
   font-size: 2rem;
   color: #7593eb;
   font-weight: 700;
+}
+
+.btn {
+  border: unset;
+  font-family: "Montserrat", sans-serif;
+  color: #7593eb;
+  font-weight: 600;
+  padding: 1em 2em;
+  margin: 1em;
+  border-radius: 0.5em;
+  background-color: rgba(117, 147, 235, 0.2);
+  cursor: pointer;
 }
 
 body {

@@ -1,0 +1,11 @@
+.btn {
+    border: unset;
+    font-family: "Montserrat", sans-serif;
+    color: $accent-color;
+    font-weight: 600;
+    padding: 1em 2em;
+    margin: 1em;
+    border-radius: 0.5em;
+    background-color: rgba($accent-color, 0.2);
+    cursor: pointer;
+}
