@@ -18,7 +18,7 @@ const DisplayChart = (props) => {
 
     return (
         <>
-        <div>
+        <div className="parameter-info">
             <h3>
                 {props.parameters[0].displayName} ({props.parameters[0].preferredUnit})
             </h3>

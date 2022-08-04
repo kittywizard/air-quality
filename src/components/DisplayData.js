@@ -24,7 +24,7 @@ export default function DisplayData(props) {
             
                 <div>
                     <h1>
-                        Loading!
+                        Loading! Please wait.
                     </h1>
                 </div> 
                 : 

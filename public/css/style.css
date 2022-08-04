@@ -75,6 +75,18 @@
   cursor: pointer;
 }
 
+.parameter-info {
+  text-align: center;
+}
+.parameter-info h3 {
+  font-size: 1.25rem;
+  color: #7593eb;
+  margin: 0;
+}
+.parameter-info p {
+  margin: 0 0 0.5em 0;
+}
+
 body {
   font-family: "Montserrat", sans-serif;
 }
