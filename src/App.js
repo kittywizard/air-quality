@@ -6,6 +6,7 @@ import Map from "./components/Map";
 import Filters from './components/Filters';
 import DisplayData from './components/DisplayData';
 
+import {getCurrentDate, getOneMonthAgo} from "./helpers/dates";
 
 function App() {
   
@@ -39,23 +40,26 @@ function App() {
   // rendering measurement data
   useEffect(() => {
 
-    const currentDate = new Date().toLocaleString("en-US", {day:"2-digit", month:'2-digit', year:"numeric"});
-    console.log(currentDate)
+    const currentDateFormatted = getCurrentDate();
+    const dateFrom = getOneMonthAgo();
 
-    //const currentDateFormatted =`${currentDate.getFullYear()}-${(currentDate.getMonth() < 10) ? "0" + currentDate.getMonth() : currentDate.getMonth()}-${(currentDate.getDate() < 10) ? "0" + currentDate.getDate().toString() : currentDate.getDate()}`;
-  //  const currentDateFormatted = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
-  //   console.log(currentDateFormatted);
-
-    let fetchURL = `https://api.openaq.org/v2/measurements?date_from=2022-07-01&date_to=2022-07-31&limit=50&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime&parameter=pm10`;
+    let fetchURL = `https://api.openaq.org/v2/measurements?date_from=${dateFrom}&date_to=${currentDateFormatted}&limit=50&page=1&offset=0&sort=asc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime&parameter=pm10`;
     //let fetchURL = `https://api.openaq.org/v2/latest/location_id=${displayMeasurements[1]}?limit=100&page=1&offset=0&sort=desc&radius=1000&order_by=lastUpdated&dumpRaw=false&parameter=pm10`
 
     if(displayMeasurements[0]){
-      fetch(fetchURL)
-      .then(resp => resp.json())
-      .then(data => {
-        setMeasurementData(data.results);
-        setShowMap(prevState => !prevState); //force the chart to show when fetching
-      })
+  
+        fetch(fetchURL)
+        .then(resp => resp.json())
+        .then(data => {
+          setMeasurementData(data.results);
+          setShowMap(prevState => !prevState); //force the chart to show when fetching
+        })
+        .catch(error => {
+          console.log(error)
+        }
+          )
+      
+     
     }
     
   }, [displayMeasurements]);
