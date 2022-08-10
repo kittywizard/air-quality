@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DisplayChart from "./DisplayChart";
 import {results} from "../data/parameters";
 
@@ -18,12 +18,23 @@ export default function DisplayData(props) {
 
     });
 
+    useEffect(() => {
+        const timerWatch = setTimeout(() => {
+            //after 4 seconds, check status of API?
+            console.log('checking the time')
+        }, 4000);
+    
+        return () => clearTimeout(timerWatch);
+    }, [refinedMeasurementData])
+
     return (
         <section className="data-display">
             { refinedMeasurementData.length === 0 ? 
             
                 <div>
-                    <h1>
+                    <h1>{
+                            
+                        }
                         Loading! Please wait.
                     </h1>
                 </div> 

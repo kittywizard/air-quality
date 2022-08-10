@@ -7,12 +7,10 @@ export default function Header({toggleMap, showMap}) {
             <p className="header-description">
                 Select a button to filter data based on air quality measurement type and click on any dot to see detailed measurements.
             </p>
-            {
-                !showMap &&
+            {/* hide button doesn't show it after grabbing data. yet another variable?? */}
                 <button className="btn" onClick={toggleMap}>
                 {showMap ? "Hide" : "Show"} Map
                 </button>
-            }
         </header>
     )
 }

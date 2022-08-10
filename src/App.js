@@ -51,6 +51,7 @@ function App() {
         fetch(fetchURL)
         .then(resp => resp.json())
         .then(data => {
+          console.log(data); //government data doesn't want to pull anything in from this url
           setMeasurementData(data.results);
           setShowMap(prevState => !prevState); //force the chart to show when fetching
         })
@@ -58,8 +59,6 @@ function App() {
           console.log(error)
         }
           )
-      
-     
     }
     
   }, [displayMeasurements]);
