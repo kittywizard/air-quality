@@ -1,40 +1,44 @@
-import { useEffect, useRef } from "react";
 import DisplayChart from "./DisplayChart";
 import {results} from "../data/parameters";
 
-export default function DisplayData(props) {
+export default function DisplayData(props) {    
 
     const refinedMeasurementData = props.measurementData.map(data => {
         const formattedDate = new Date(data.date.local);
         const readableDate = 
         `${formattedDate.getMonth() + 1}/${formattedDate.getDate()}`;
 
+        const valueObjString = `value${data.parameter}`;
+        
         return {
             date: readableDate,
-            value: data.value,
+            [valueObjString]: data.value,
             unit: data.unit,
+            parameter: data.parameter,
             location: data.location
         }
 
     });
 
-    let loadingText = 'Loading! Please wait..';
-    const refContainer = useRef();
+    //sort data by parameter type
+    refinedMeasurementData.sort((a,b) => {
+        const paramA = a.parameter.toUpperCase();
+        const paramB = b.parameter.toUpperCase();
 
-    useEffect(() => {
-        const timerWatch = setTimeout(() => {
-            if(refinedMeasurementData.length === 0) {
-                //after 4 seconds, if still no data, tell user to go back and try again?
-                refContainer.current = "Loading! This is taking a little longer than expected.";
-                console.log(refContainer)
+        if(paramA < paramB) {
+            return -1;
+        }
+        
+        if (paramA > paramB) {
+            return 1
+        }
+        return 0;
+    });
 
-            } else {
-                refContainer.current = 'Loading! Please wait..';
-            }
-        }, 4000);
-    
-        return () => clearTimeout(timerWatch);
-    }, [refinedMeasurementData])
+    //grab all parameters, kill the duplicates
+    let parametersAvailable = refinedMeasurementData.map(param => param.parameter);
+    const paramSet = new Set(parametersAvailable);
+    parametersAvailable = Array.from(paramSet);
 
     return (
         <section className="data-display">
@@ -42,13 +46,14 @@ export default function DisplayData(props) {
             
                 <div>
                     <h1>
-                    {refContainer.current}   
+                        Loading, please wait!
                     </h1>
                 </div> 
                 : 
                         <DisplayChart
                              data={refinedMeasurementData}
-                             parameters={results} 
+                             parameters={results}
+                             parametersAvailable={parametersAvailable} 
                         />
             }
 
