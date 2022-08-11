@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import DisplayChart from "./DisplayChart";
 import {results} from "../data/parameters";
 
@@ -18,10 +18,19 @@ export default function DisplayData(props) {
 
     });
 
+    let loadingText = 'Loading! Please wait..';
+    const refContainer = useRef();
+
     useEffect(() => {
         const timerWatch = setTimeout(() => {
-            //after 4 seconds, check status of API?
-            console.log('checking the time')
+            if(refinedMeasurementData.length === 0) {
+                //after 4 seconds, if still no data, tell user to go back and try again?
+                refContainer.current = "Loading! This is taking a little longer than expected.";
+                console.log(refContainer)
+
+            } else {
+                refContainer.current = 'Loading! Please wait..';
+            }
         }, 4000);
     
         return () => clearTimeout(timerWatch);
@@ -32,10 +41,8 @@ export default function DisplayData(props) {
             { refinedMeasurementData.length === 0 ? 
             
                 <div>
-                    <h1>{
-                            
-                        }
-                        Loading! Please wait.
+                    <h1>
+                    {refContainer.current}   
                     </h1>
                 </div> 
                 : 
