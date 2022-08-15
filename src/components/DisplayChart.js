@@ -9,7 +9,11 @@ const DisplayChart = ({data, parameters, parametersAvailable}) => {
                 stroke="#2d499c"
                 activeDot={{r: 8}}
                 />
-    })
+    });
+
+    console.log(data);
+    console.log('parameters:')
+    console.log(parametersAvailable);
 
     return (
         <>
