@@ -36,7 +36,16 @@ export default function DisplayData(props) {
     });
 
     //grab all parameters, kill the duplicates
-    let parametersAvailable = refinedMeasurementData.map(param => param.parameter);
+    // let parametersAvailable = refinedMeasurementData.map(param => {
+    //     console.log(param);
+    //     if(param.parameter !== "um025" | "um100" | "um010") {
+    //         return param.parameter;
+    //     } else {
+    //         return;
+    //     }
+    // });
+
+    let parametersAvailable = refinedMeasurementData.map(param => param.parameter)
     const paramSet = new Set(parametersAvailable);
     parametersAvailable = Array.from(paramSet);
 

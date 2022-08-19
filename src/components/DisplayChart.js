@@ -12,8 +12,6 @@ const DisplayChart = ({data, parameters, parametersAvailable}) => {
     });
 
     console.log(data);
-    console.log('parameters:')
-    console.log(parametersAvailable);
 
     return (
         <>

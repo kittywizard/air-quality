@@ -43,16 +43,16 @@ function App() {
     const currentDateFormatted = getCurrentDate();
     const dateFrom = getOneMonthAgo();
 
-    let fetchURL = `https://api.openaq.org/v2/measurements?date_from=${dateFrom}&date_to=${currentDateFormatted}&limit=100&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`;
-    //let fetchURL = `https://api.openaq.org/v2/latest/location_id=${displayMeasurements[1]}?limit=100&page=1&offset=0&sort=desc&radius=1000&order_by=lastUpdated&dumpRaw=false&parameter=pm10`
-
+    let fetchURL = `https://api.openaq.org/v2/measurements?date_from=${dateFrom}&date_to=${currentDateFormatted}&limit=200&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`;
+    //let fetchURL = `https://api.openaq.org/v2/latest/location_id=${displayMeasurements[1]}?limit=100&page=1&offset=0&sort=desc&radius=1000&order_by=lastUpdated&dumpRaw=false&parameter=pm10&parameter=pm25`
     if(displayMeasurements[0]){
   
         fetch(fetchURL)
         .then(resp => resp.json())
         .then(data => {
+          console.log(data)
           setMeasurementData(data.results);
-          setShowMap(prevState => !prevState); //force the chart to show when fetching
+          toggleMap(); 
         })
         .catch(error => {
           console.log(error)
@@ -68,6 +68,7 @@ function App() {
     e.preventDefault();
   }
 
+  //controls state on hide/show map button
   function toggleMap() {
     setShowMap(prevState => !prevState);
   }
