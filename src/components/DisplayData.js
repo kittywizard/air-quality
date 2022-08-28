@@ -37,15 +37,19 @@ export default function DisplayData(props) {
 
     //grab all parameters, kill the duplicates
     let parametersAvailable = refinedMeasurementData.map(param => {
-        console.log(param);
-        if(param.parameter !== "um025" || "um100" || "um010") {
+        if(param.parameter === "um025" 
+        || param.parameter === "um100" 
+        || param.parameter === "um010") {
+            return '';
+        } else {
             return param.parameter;
-        } 
+        }
     });
 
     //let parametersAvailable = refinedMeasurementData.map(param => param.parameter)
     const paramSet = new Set(parametersAvailable);
     parametersAvailable = Array.from(paramSet);
+    parametersAvailable.pop(); //may break later, removing blank at the end
 
     return (
         <section className="data-display">
