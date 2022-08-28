@@ -50,7 +50,6 @@ function App() {
         fetch(fetchURL)
         .then(resp => resp.json())
         .then(data => {
-          console.log(data)
           setMeasurementData(data.results);
           toggleMap(); 
         })
