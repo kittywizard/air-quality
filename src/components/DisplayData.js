@@ -3,6 +3,7 @@ import {results} from "../data/parameters";
 
 export default function DisplayData(props) {    
 
+    //return object with relevant data
     const refinedMeasurementData = props.measurementData.map(data => {
         const formattedDate = new Date(data.date.local);
         const readableDate = 
@@ -35,7 +36,7 @@ export default function DisplayData(props) {
         return 0;
     });
 
-    //grab all parameters, kill the duplicates
+    //grab all parameters, kill the duplicates + the ones i don't want
     let parametersAvailable = refinedMeasurementData.map(param => {
         if(param.parameter === "um025" 
         || param.parameter === "um100" 

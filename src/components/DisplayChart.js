@@ -2,6 +2,9 @@ import { LineChart, Line, XAxis, YAxis, Legend, ResponsiveContainer, Tooltip } f
 
 const DisplayChart = ({data, parameters, parametersAvailable}) => {
 
+    //need to divide data up by its parameter to get a proper line chart
+
+    
     const lineComponents = parametersAvailable.map(line => {
         return <Line
                 type="monotone"
@@ -11,7 +14,7 @@ const DisplayChart = ({data, parameters, parametersAvailable}) => {
                 />
     });
 
-    //console.log(data);
+    console.log(parametersAvailable);
 
     return (
         <>
