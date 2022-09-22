@@ -2,6 +2,7 @@ import DisplayChart from "./DisplayChart";
 import {results} from "../data/parameters";
 
 export default function DisplayData(props) {    
+    console.log(props.measurementData)
 
     //return object with relevant data
     const refinedMeasurementData = props.measurementData.map(data => {

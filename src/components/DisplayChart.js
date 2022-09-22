@@ -9,12 +9,10 @@ const DisplayChart = ({data, parameters, parametersAvailable}) => {
         return <Line
                 type="monotone"
                 dataKey={`value${line}`}
-                stroke="#2d499c"
-                activeDot={{r: 8}}
+                stroke={line === "pm1" ? "#2d499c" : line === "pm10" ? "#4e499c" : "#5d577e"}
+                activeDot={{r: 8}} 
                 />
     });
-
-    console.log(parametersAvailable);
 
     return (
         <>

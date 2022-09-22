@@ -7,20 +7,22 @@ import Filters from './components/Filters';
 import DisplayData from './components/DisplayData';
 
 import {getCurrentDate, getOneMonthAgo} from "./helpers/dates";
+import useMap from "./hooks/useMap";
+import useFilters from "./hooks/useFilters";
 
 function App() {
+
+  const {toggleMap, showMap, setDisplayMeasurements, displayMeasurements} = useMap();
+  const {dataFilters, setDataFilters} = useFilters();
   
-  const [showMap, setShowMap] = useState(true);
   const [tooltip, setTooltip] = useState("");   //controls the tooltip display state (onMouseOver)
   const [locationData, setLocationData] = useState([]); //initial marker data
-  const [dataFilters, setDataFilters] = useState(''); //filters
   const [measurementData, setMeasurementData] = useState([]); //specific measurement info once a marker is clicked
-  const [displayMeasurements, setDisplayMeasurements] = useState([false, 0]); //checking to see if above is called and displayed
 
   //basic JSON data for a map of the US
   const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
-  //default URL
+  // //default URL
   let url = `https://api.openaq.org/v2/locations?limit=50&page=1&offset=0&sort=desc&has_geo=true&radius=1000&country_id=US&order_by=lastUpdated&dumpRaw=false`;
 
   //marker rendering locations 
@@ -43,8 +45,7 @@ function App() {
     const currentDateFormatted = getCurrentDate();
     const dateFrom = getOneMonthAgo();
 
-    let fetchURL = `https://api.openaq.org/v2/measurements?date_from=${dateFrom}&date_to=${currentDateFormatted}&limit=200&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`;
-    //let fetchURL = `https://api.openaq.org/v2/latest/location_id=${displayMeasurements[1]}?limit=100&page=1&offset=0&sort=desc&radius=1000&order_by=lastUpdated&dumpRaw=false&parameter=pm10&parameter=pm25`
+    let fetchURL = `https://api.openaq.org/v2/measurements?date_from=${dateFrom}&date_to=${currentDateFormatted}&limit=1000&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`;
     if(displayMeasurements[0]){
   
         fetch(fetchURL)
@@ -55,8 +56,7 @@ function App() {
         })
         .catch(error => {
           console.log(error)
-        }
-          )
+        })
     }
     
   }, [displayMeasurements]);
@@ -65,11 +65,6 @@ function App() {
   function toggle(e,id) {
     setDisplayMeasurements([true, id]);
     e.preventDefault();
-  }
-
-  //controls state on hide/show map button
-  function toggleMap() {
-    setShowMap(prevState => !prevState);
   }
 
   return (
