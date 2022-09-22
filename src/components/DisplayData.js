@@ -1,57 +1,22 @@
 import DisplayChart from "./DisplayChart";
 import {results} from "../data/parameters";
 
+import useDisplayData from "../hooks/useDisplayData";
+
 export default function DisplayData(props) {    
-    console.log(props.measurementData)
 
-    //return object with relevant data
-    const refinedMeasurementData = props.measurementData.map(data => {
-        const formattedDate = new Date(data.date.local);
-        const readableDate = 
-        `${formattedDate.getMonth() + 1}/${formattedDate.getDate()}`;
+    const {
+        refinedMeasurementData,
+        parametersAvailable
+    } = useDisplayData(props);
 
-        const valueObjString = `value${data.parameter}`;
-        
-        return {
-            date: readableDate,
-            [valueObjString]: data.value,
-            unit: data.unit,
-            parameter: data.parameter,
-            location: data.location
-        }
+    console.log(refinedMeasurementData[1000].date)
+    //take refinedData and average it out into a new variable
+    const averagedData = [];
 
-    });
-
-    //sort data by parameter type
-    refinedMeasurementData.sort((a,b) => {
-        const paramA = a.parameter.toUpperCase();
-        const paramB = b.parameter.toUpperCase();
-
-        if(paramA < paramB) {
-            return -1;
-        }
-        
-        if (paramA > paramB) {
-            return 1
-        }
-        return 0;
-    });
-
-    //grab all parameters, kill the duplicates + the ones i don't want
-    let parametersAvailable = refinedMeasurementData.map(param => {
-        if(param.parameter === "um025" 
-        || param.parameter === "um100" 
-        || param.parameter === "um010") {
-            return '';
-        } else {
-            return param.parameter;
-        }
-    });
-
-    //let parametersAvailable = refinedMeasurementData.map(param => param.parameter)
-    const paramSet = new Set(parametersAvailable);
-    parametersAvailable = Array.from(paramSet);
-    parametersAvailable.pop(); //may break later, removing blank at the end
+    //data comes in as an object:
+    //locationId, parameter, location String, value, date object
+    //average by date (string 9/20 for ex)
 
     return (
         <section className="data-display">

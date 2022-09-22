@@ -12,7 +12,7 @@ import useFilters from "./hooks/useFilters";
 
 function App() {
 
-  const {toggleMap, showMap, setDisplayMeasurements, displayMeasurements} = useMap();
+  const {toggleMap, showMap, setDisplayMeasurements, displayMeasurements, toggle} = useMap();
   const {dataFilters, setDataFilters} = useFilters();
   
   const [tooltip, setTooltip] = useState("");   //controls the tooltip display state (onMouseOver)
@@ -60,12 +60,6 @@ function App() {
     }
     
   }, [displayMeasurements]);
-
-  //display measurement data 
-  function toggle(e,id) {
-    setDisplayMeasurements([true, id]);
-    e.preventDefault();
-  }
 
   return (
     <div className="App">
