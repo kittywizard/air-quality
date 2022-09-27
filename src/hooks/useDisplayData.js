@@ -6,7 +6,7 @@ function useDisplayData(props) {
         const readableDate = 
         `${formattedDate.getMonth() + 1}/${formattedDate.getDate()}`;
 
-        const valueObjString = `value${data.parameter}`;
+       // const valueObjString = `value${data.parameter}`;
         
         return {
             date: readableDate,

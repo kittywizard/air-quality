@@ -35,3 +35,13 @@
         }
     }
 }
+
+.charts {
+    display: flex;
+    flex-direction: row;
+}
+
+.single-chart {
+    display: flex;
+    flex-direction: column;
+}

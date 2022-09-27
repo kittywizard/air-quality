@@ -1,6 +1,6 @@
 import { LineChart, Line, XAxis, YAxis, Legend, ResponsiveContainer, Tooltip } from "recharts";
 
-const DisplayChart = ({data, parameters, parametersAvailable}) => {
+const DisplayChart = ({data, parameters}) => {
 
     //need to divide data up by its parameter to get a proper line chart
 
@@ -14,15 +14,14 @@ const DisplayChart = ({data, parameters, parametersAvailable}) => {
     //             />
     // });
 
-
     return (
-        <>
-        {/* <div className="parameter-info">
+        <section className="single-chart">
+        <div className="parameter-info">
             <h3>
-                {props.parameters[0].displayName} ({props.parameters[0].preferredUnit})
+                {parameters.displayName} ({parameters.preferredUnit})
             </h3>
-            <p>{props.parameters[0].description}</p>
-        </div> */}
+            <p>{parameters.description}</p>
+        </div>
             <LineChart
                 width={400} height={400} data={data} className="chart-style"
             >
@@ -38,7 +37,7 @@ const DisplayChart = ({data, parameters, parametersAvailable}) => {
                 <Tooltip />
 
             </LineChart>
-    </>
+    </section>
     )
 }
 

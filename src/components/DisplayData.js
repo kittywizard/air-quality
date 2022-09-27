@@ -11,16 +11,11 @@ export default function DisplayData(props) {
     } = useDisplayData(props);
 
 
-    //data comes in as an object:
-    //locationId, parameter, location String, value, date object
-    //average by date (string 9/20 for ex)
+    const filteredResults = results.filter(item => item.name === "pm1" || item.name === "pm10" || item.name === "pm25");
 
-    //create a new map for each parameter
-
-    //then display all the charts
     const um25 = refinedMeasurementData.filter(item => item.parameter === "um025");
     const um100 = refinedMeasurementData.filter(item => item.parameter === "um100");
-    const um10 = refinedMeasurementData.filter(item => item.parameter === "um010")
+    const um10 = refinedMeasurementData.filter(item => item.parameter === "um010");
 
 
     return (
@@ -33,29 +28,21 @@ export default function DisplayData(props) {
                     </h1>
                 </div> 
                 : 
-                <div>
+                <div className="charts">
                     <DisplayChart 
                         data={um25}
-                        parameters={results}
-                        parametersAvailable={parametersAvailable}
+                        parameters={filteredResults[1]}
                     />
                     <DisplayChart 
                         data={um100}
-                        parameters={results}
-                        parametersAvailable={parametersAvailable}
+                        parameters={filteredResults[2]}
                     />
                     <DisplayChart 
                         data={um10}
-                        parameters={results}
-                        parametersAvailable={parametersAvailable}
+                        parameters={filteredResults[0]}
                     />
 
                 </div>
-                        // <DisplayChart
-                        //      data={refinedMeasurementData}
-                        //      parameters={results}
-                        //      parametersAvailable={parametersAvailable} 
-                        // />
             }
 
         </section>
