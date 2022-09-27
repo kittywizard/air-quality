@@ -10,13 +10,18 @@ export default function DisplayData(props) {
         parametersAvailable
     } = useDisplayData(props);
 
-    console.log(refinedMeasurementData[1000].date)
-    //take refinedData and average it out into a new variable
-    const averagedData = [];
 
     //data comes in as an object:
     //locationId, parameter, location String, value, date object
     //average by date (string 9/20 for ex)
+
+    //create a new map for each parameter
+
+    //then display all the charts
+    const um25 = refinedMeasurementData.filter(item => item.parameter === "um025");
+    const um100 = refinedMeasurementData.filter(item => item.parameter === "um100");
+    const um10 = refinedMeasurementData.filter(item => item.parameter === "um010")
+
 
     return (
         <section className="data-display">
@@ -28,11 +33,29 @@ export default function DisplayData(props) {
                     </h1>
                 </div> 
                 : 
-                        <DisplayChart
-                             data={refinedMeasurementData}
-                             parameters={results}
-                             parametersAvailable={parametersAvailable} 
-                        />
+                <div>
+                    <DisplayChart 
+                        data={um25}
+                        parameters={results}
+                        parametersAvailable={parametersAvailable}
+                    />
+                    <DisplayChart 
+                        data={um100}
+                        parameters={results}
+                        parametersAvailable={parametersAvailable}
+                    />
+                    <DisplayChart 
+                        data={um10}
+                        parameters={results}
+                        parametersAvailable={parametersAvailable}
+                    />
+
+                </div>
+                        // <DisplayChart
+                        //      data={refinedMeasurementData}
+                        //      parameters={results}
+                        //      parametersAvailable={parametersAvailable} 
+                        // />
             }
 
         </section>

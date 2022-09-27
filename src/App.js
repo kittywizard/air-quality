@@ -45,7 +45,7 @@ function App() {
     const currentDateFormatted = getCurrentDate();
     const dateFrom = getOneMonthAgo();
 
-    let fetchURL = `https://api.openaq.org/v2/measurements?date_from=${dateFrom}&date_to=${currentDateFormatted}&limit=1000&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`;
+    let fetchURL = `https://api.openaq.org/v2/measurements?date_from=${dateFrom}&date_to=${currentDateFormatted}&limit=100&page=1&offset=0&sort=desc&radius=1000&country_id=US&location_id=${displayMeasurements[1]}&order_by=datetime`;
     if(displayMeasurements[0]){
   
         fetch(fetchURL)

@@ -5,14 +5,15 @@ const DisplayChart = ({data, parameters, parametersAvailable}) => {
     //need to divide data up by its parameter to get a proper line chart
 
     
-    const lineComponents = parametersAvailable.map(line => {
-        return <Line
-                type="monotone"
-                dataKey={`value${line}`}
-                stroke={line === "pm1" ? "#2d499c" : line === "pm10" ? "#4e499c" : "#5d577e"}
-                activeDot={{r: 8}} 
-                />
-    });
+    // const lineComponents = parametersAvailable.map(line => {
+    //     return <Line
+    //             type="monotone"
+    //             dataKey={`value${line}`}
+    //             stroke="#000"
+    //             activeDot={{r: 8}} 
+    //             />
+    // });
+
 
     return (
         <>
@@ -23,17 +24,16 @@ const DisplayChart = ({data, parameters, parametersAvailable}) => {
             <p>{props.parameters[0].description}</p>
         </div> */}
             <LineChart
-                width={800} height={400} data={data} className="chart-style"
+                width={400} height={400} data={data} className="chart-style"
             >
                 <XAxis dataKey="date"/>
                 <YAxis />
-                {/* <Line 
+                <Line 
                     type="monotone"
                     dataKey="value"
                     stroke="#2d499c"
                     activeDot={{r: 8}}
-                /> */}
-                {lineComponents}
+                />
                 <Legend />
                 <Tooltip />
 

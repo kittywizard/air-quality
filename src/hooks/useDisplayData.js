@@ -10,7 +10,7 @@ function useDisplayData(props) {
         
         return {
             date: readableDate,
-            [valueObjString]: data.value,
+            value: data.value,
             unit: data.unit,
             parameter: data.parameter,
             location: data.location
