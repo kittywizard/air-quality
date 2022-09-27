@@ -125,4 +125,14 @@ p {
   margin: 0 auto;
 }
 
+@media screen and (max-width: 800px) {
+  .data-display {
+    max-width: 700px;
+  }
+
+  .charts {
+    flex-direction: column;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
